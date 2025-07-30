@@ -211,7 +211,7 @@ data/*
 !data/.gitkeep
 
 #triton
-triton/*
+triton/*/*
 !triton/.gitkeep
 
 #model_zoo
