@@ -1,0 +1,34 @@
+#train settings
+BATCH_SIZE: 20 # Num packages for train
+EPOCHS: 300 # Num epoch for train
+WEIGHT_DECAY: 0.001
+GAMMA: 0.1 # scale for reduction lr in train
+NUM_WORKERS: 16 # CPU cores
+LEARNING_RATE: 0.0001 # lr for train
+MILESTONES: # Epoch when decay lr
+- 90
+- 120
+- 150
+- 180
+- 220
+- 250
+- 280
+
+#Data settings
+OUTPUT_DIR:
+TRAIN_DATASET: "./data/markups" # Path to train dataset
+VAL_DATASET:  # Path to val dataset
+TEST_DATASET: # Path to test dataset
+
+#MLflow logger
+MLFLOW_LOGGING_ENABLED: False
+MLFLOW_LOGGING_EXPERIMENT_NAME:
+
+#Weights settings
+PRETRAINED: False # Use pretrained weights
+WEIGHTS:  # Path to model .ckpt
+CONVERT_MODEL: False  # Save model as .ptc additionaly
+
+#DDP settings
+ACCELERATOR: gpu
+DEVICE: 1
