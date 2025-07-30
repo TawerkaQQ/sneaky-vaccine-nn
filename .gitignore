@@ -212,7 +212,6 @@ data/*
 
 #triton
 triton/models/*
-!triton/.gitkeep
 
 #model_zoo
 model_zoo/*
