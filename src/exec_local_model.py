@@ -3,6 +3,7 @@ import json
 import os
 import sys
 from io import BytesIO
+from dotenv import load_dotenv
 
 import aio_pika
 import cv2
@@ -19,9 +20,9 @@ sys.path.append(rabbitmq_connector)
 from rabbit import RabbitMQ
 
 rmq = RabbitMQ()
-OUTPUT_IMAGES_PATH = (
-    "/home/tawerka/Projects/core_sneaky_vaccine/sneaky_vaccine_tg/outputs_nn_photos"
-)
+
+load_dotenv('.env', override=True)
+OUTPUT_IMAGES_PATH = os.getenv("OUTPUT_IMAGES_PATH")
 
 
 def model_exec(image_path: str) -> np.ndarray:
