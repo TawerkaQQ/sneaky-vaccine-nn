@@ -13,7 +13,7 @@ from .vision_utils import get_model
 
 current_directory = os.path.dirname(__file__)
 rabbitmq_connector = os.path.join(
-    current_directory, "..", "..", "sneaky-vaccine-backend"
+    current_directory, "..", "..", "backend"
 )
 sys.path.append(rabbitmq_connector)
 
@@ -38,7 +38,9 @@ def model_exec(image_path: str) -> np.ndarray:
     if not isinstance(image, np.ndarray):
         raise ValueError("image must be ndarray")
 
-    model_path = os.path.join(os.path.dirname(__file__), "../model_zoo", "det_10g.onnx")
+    model_path = os.path.join(os.path.dirname(__file__), "./model_zoo", "det_10g.onnx")
+
+    print(f"model path: {model_path}")
 
     detector = get_model(model_path)
     detector.prepare(ctx_id=0, input_size=(640, 640))
@@ -75,6 +77,8 @@ async def image_from_tg_callback(message: aio_pika.IncomingMessage):
         print(f"Neural net received: {data}")
 
         image_path = data.get("path_to_processing_image", None)
+
+        print(f"image path: {image_path}")
         user_id = data.get("user_id", None)
 
         output = model_exec(image_path)
